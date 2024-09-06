@@ -67,6 +67,7 @@ export async function updateInvoice(id: string, formData: FormData) {
 export async function deleteInvoice(id: string) {
     try {
         await sql`DELETE FROM invoices WHERE id = ${id}`;
+        revalidatePath('/dashboard/invoices');
         return {
             message: '인보이스가 성공적으로 삭제되었습니다.',
         }
